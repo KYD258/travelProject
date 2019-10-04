@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class shiroConfig {
+public class TbUserShiroConfig {
 
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactroyBean(@Qualifier("defaultWebSecurityManager")DefaultWebSecurityManager defaultWebSecurityManager){
@@ -43,7 +43,7 @@ public class shiroConfig {
         return defaultWebSecurityManager;
     }
 
-    @Bean("myRealm")
+    @Bean("TbUserRealm")
     public MyRealm myRealm(@Qualifier("hashedCredentialsMatcher")HashedCredentialsMatcher hashedCredentialsMatcher){
         MyRealm myRealm = new MyRealm();
         myRealm.setAuthorizationCachingEnabled(false);

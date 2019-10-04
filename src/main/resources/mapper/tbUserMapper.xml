@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.dao.TbUserMapper">
+
+    <!--
+    private Integer userId;
+    private String loginName;
+    private String realName;
+    private Integer sex;
+    private Integer age;
+    private String address;
+    private String password;
+    private String phone;
+    private String email;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date createTime;
+    -->
+    <resultMap id="baseResultMap" type="com.qf.domain.TbUser">
+        <id property="userId" column="user_id"></id>
+        <result property="loginName" column="login_name"></result>
+        <result property="realName" column="real_name"></result>
+        <result property="sex" column="sex"></result>
+        <result property="age" column="age"></result>
+        <result property="address" column="address"></result>
+        <result property="password" column="password"></result>
+        <result property="phone" column="phone"></result>
+        <result property="email" column="email"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="pic" column="pic"></result>
+    </resultMap>
+    <select id="findByLoginName" parameterType="java.lang.String" resultMap="baseResultMap">
+        select * from tb_user where login_name=#{loginName}
+    </select>
+    <insert id="insertUser" parameterType="com.qf.domain.TbUser">
+        insert into tb_user (login_name, real_name, sex, age, address, password, phone, email, create_time, pic)
+        value (#{loginName},#{realName},#{sex},#{age},#{address},#{password},#{phone},#{email},#{createTime},#{pic})
+    </insert>
+</mapper>    
