@@ -21,7 +21,16 @@
         select * from user_code where email=#{email}
     </select>
     <update id="updateCode" parameterType="com.qf.domain.UserCode">
-        update user_code set code_num=#{codeNum} where email=#{email}
+        update user_code
+        <set>
+            <if test="codeNum!=null and codeNum!=''">
+                code_num=#{codeNum},
+            </if>
+            <if test="status!=null and status!=''">
+                status=#{status}
+            </if>
+        </set>
+       where email=#{email}
     </update>
     <update id="updateStatus" parameterType="java.lang.String">
         update user_code set status = 2
