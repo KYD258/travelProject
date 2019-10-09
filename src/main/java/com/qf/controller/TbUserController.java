@@ -2,7 +2,6 @@ package com.qf.controller;
 
 import com.qf.commons.R;
 import com.qf.domain.TbUser;
-import com.qf.domain.UserCode;
 import com.qf.responses.TbUserResponse;
 import com.qf.service.TbUserService;
 import com.qf.service.UserCodeService;

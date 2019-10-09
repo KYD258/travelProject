@@ -1,6 +1,7 @@
 package com.qf.config;
 
 import com.qf.shiro.MyRealm;
+import com.qf.shiro.TbUserRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -35,20 +36,20 @@ public class TbUserShiroConfig {
     }
 
     @Bean("defaultWebSecurityManager")
-    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("myRealm")MyRealm myRealm){
+    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("TbUserRealm")TbUserRealm tbUserRealm){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
 
-        defaultWebSecurityManager.setRealm(myRealm);
+        defaultWebSecurityManager.setRealm(tbUserRealm);
 
         return defaultWebSecurityManager;
     }
 
     @Bean("TbUserRealm")
-    public MyRealm myRealm(@Qualifier("hashedCredentialsMatcher")HashedCredentialsMatcher hashedCredentialsMatcher){
-        MyRealm myRealm = new MyRealm();
-        myRealm.setAuthorizationCachingEnabled(false);
-        myRealm.setCredentialsMatcher(hashedCredentialsMatcher);
-        return myRealm;
+    public TbUserRealm TbUserRealm(@Qualifier("hashedCredentialsMatcher")HashedCredentialsMatcher hashedCredentialsMatcher){
+        TbUserRealm tbUserRealm = new TbUserRealm();
+        tbUserRealm.setAuthorizationCachingEnabled(false);
+        tbUserRealm.setCredentialsMatcher(hashedCredentialsMatcher);
+        return tbUserRealm;
     }
 
     /**

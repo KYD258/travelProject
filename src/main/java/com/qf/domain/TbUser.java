@@ -17,7 +17,7 @@ public class TbUser {
     private String loginName;
     @Column(name = "real_name")
     private String realName;
-    private Integer sex;
+    private String sex;
     private String age;
     private String address;
     private String password;
