@@ -14,4 +14,6 @@ public interface SysRouteService {
     SysRouteResponse selectAll(Integer size, Integer page);
 
     SysRoute selectById(Integer routeId);
+
+    SysRoute selectByattrId(Integer attrId);
 }

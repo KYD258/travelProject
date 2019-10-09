@@ -1,5 +1,6 @@
 package com.qf.controller;
 
+import com.qf.domain.SysAttr;
 import com.qf.domain.SysRoute;
 import com.qf.responses.SysRouteResponse;
 import com.qf.service.SysRouteService;
@@ -36,5 +37,10 @@ public class SysRouteController {
     @RequestMapping("/update")
     public String update(@RequestBody SysRoute sysRoute){
         return sysRouteService.update(sysRoute);
+    }
+
+    @RequestMapping("/selectByattrId")
+    public SysRoute selectByattrId(@RequestBody SysAttr sysAttr){
+        return sysRouteService.selectByattrId(sysAttr.getAttrId());
     }
 }

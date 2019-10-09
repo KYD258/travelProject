@@ -1,5 +1,6 @@
 package com.qf.service.impl;
 
+import com.qf.dao.SysRouteMapper;
 import com.qf.dao.SysRouteRepository;
 import com.qf.domain.SysRoute;
 import com.qf.responses.SysRouteResponse;
@@ -16,6 +17,9 @@ import java.util.Optional;
 public class SysRouteServiceImpl implements SysRouteService {
     @Autowired
     private SysRouteRepository sysRouteRepository;
+
+    @Autowired
+    private SysRouteMapper sysRouteMapper;
 
     @Override
     public String save(SysRoute sysRoute) {
@@ -50,6 +54,15 @@ public class SysRouteServiceImpl implements SysRouteService {
         Optional<SysRoute> byId = sysRouteRepository.findById(routeId);
         if(byId.isPresent()){
             SysRoute sysRoute=byId.get();
+            return sysRoute;
+        }
+        return null;
+    }
+
+    @Override
+    public SysRoute selectByattrId(Integer attrId) {
+        SysRoute sysRoute = sysRouteMapper.findByattrId(attrId);
+        if(sysRoute!=null){
             return sysRoute;
         }
         return null;
