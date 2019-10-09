@@ -69,4 +69,12 @@ public class UploadUtils {
         return null;
     }
 
+    public String getPath(MultipartFile file){
+        String path="";
+        if(file!=null&&file.getOriginalFilename()!=""){
+            path = upload(file);
+        }
+        return path;
+    }
+
 }

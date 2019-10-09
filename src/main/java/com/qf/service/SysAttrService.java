@@ -2,6 +2,7 @@ package com.qf.service;
 
 import com.qf.domain.SysAttr;
 import com.qf.responses.SysAttrResponse;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface SysAttrService {
     String save(SysAttr sysAttr);
