@@ -1,6 +1,5 @@
 package com.qf.config;
 
-import com.qf.shiro.MyRealm;
 import com.qf.shiro.TbUserRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;

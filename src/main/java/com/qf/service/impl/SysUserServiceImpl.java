@@ -24,14 +24,12 @@ public class SysUserServiceImpl implements SysUserService {
 //    }
 
     @Override
-    public String findByUsername(String username) {
-        String sysuser="";
+    public SysUser findByUsername(String username) {
             if (sysUserRepository.findByUsername(username)!=null){
                 SysUser sysUser = sysUserRepository.findByUsername(username);
-                return sysuser;
-    }
-
-        return "fial";
+                return sysUser;
+        }
+        return null;
     }
 
     @Override

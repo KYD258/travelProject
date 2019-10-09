@@ -7,6 +7,6 @@ public interface SysUserService {
 
     void sysuserRegisr(SysUser sysUser);
 
-    String findByUsername(String username);
+    SysUser findByUsername(String username);
 
 }

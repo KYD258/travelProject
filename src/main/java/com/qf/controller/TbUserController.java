@@ -34,10 +34,8 @@ public class TbUserController {
             if(subject.isAuthenticated()){
 
                 TbUser tbUser1 = tbUserService.selectByUserId(tbUser.getLoginName());
-                System.out.println(tbUser1+"++++++++++++++++++++++");
                 Integer userId = tbUser1.getUserId();
                 session.setAttribute("userId",userId);
-                System.out.println(userId+"-+-+-+-+-+");
                 return R.ok();
             }
         }catch (Exception e){
