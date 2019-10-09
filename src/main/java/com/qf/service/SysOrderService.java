@@ -19,4 +19,7 @@ public interface SysOrderService {
    String orderDelete(Integer orderId);
 
     List<SysRoute> cartSelectAll(Integer userId);
+
+
+    void savecart(SysOrder sysOrder);
 }

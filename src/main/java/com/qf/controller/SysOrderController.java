@@ -6,11 +6,14 @@ import com.qf.domain.TbUser;
 import com.qf.responses.SysOrderEncs;
 import com.qf.responses.SysOrderResponse;
 import com.qf.service.SysOrderService;
+import org.apache.catalina.session.StandardSession;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.SimpleSession;
+import org.apache.shiro.web.servlet.ShiroHttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.List;
@@ -41,10 +44,22 @@ public class SysOrderController {
     public String deleteOrder(@RequestBody SysOrder sysOrder){
         Integer orderId = sysOrder.getOrderId();
         String s = sysOrderService.orderDelete(orderId);
-
         return s;
     }
 
+    @RequestMapping("/savecart")
+
+    public void savecart(HttpSession session,@RequestBody SysRoute sysRoute){
+        System.out.println(sysRoute);
+
+        Integer userId = (Integer)session.getAttribute("userId");
+        System.out.println(userId+"++++++++++++++");
+        SysOrder sysOrder=new SysOrder();
+        sysOrder.setUserId(userId);
+        sysOrder.setRouteId(sysRoute.getRouteId());
+        sysOrderService.savecart(sysOrder);
+
+    }
 
     //购物车
     @RequestMapping("/cartSelectAll")

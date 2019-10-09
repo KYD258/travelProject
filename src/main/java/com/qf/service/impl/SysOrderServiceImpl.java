@@ -31,6 +31,12 @@ public class SysOrderServiceImpl implements SysOrderService {
 
     @Autowired
     private SysOrderMapper sysOrderMapper;
+
+    @Override
+    public void savecart(SysOrder sysOrder) {
+        sysOrderRepository.save(sysOrder);
+    }
+
     @Override
     public String orderDelete(Integer orderId) {
         sysOrderRepository.deleteById(orderId);
