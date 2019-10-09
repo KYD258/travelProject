@@ -2,6 +2,7 @@ package com.qf.service.impl;
 
 import com.qf.dao.TbUserMapper;
 import com.qf.dao.UserCodeMapper;
+import com.qf.domain.SysRoute;
 import com.qf.domain.TbUser;
 import com.qf.domain.UserCode;
 import com.qf.service.TbUserService;
@@ -30,5 +31,10 @@ public class TbUserServiceImpl implements TbUserService {
             return tbUserMapper.insertUser(tbUser) > 0;
         }
         return false;
+    }
+
+    @Override
+    public TbUser selectByUserId(String loginName) {
+        return tbUserMapper.selectByUserId(loginName);
     }
 }

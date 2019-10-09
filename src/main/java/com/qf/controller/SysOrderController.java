@@ -2,14 +2,18 @@ package com.qf.controller;
 
 import com.qf.domain.SysOrder;
 import com.qf.domain.SysRoute;
+import com.qf.domain.TbUser;
 import com.qf.responses.SysOrderEncs;
 import com.qf.responses.SysOrderResponse;
 import com.qf.service.SysOrderService;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.SimpleSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+import java.io.Serializable;
+import java.util.List;
 
 @RestController
 @RequestMapping("/sos")
@@ -39,5 +43,18 @@ public class SysOrderController {
         String s = sysOrderService.orderDelete(orderId);
 
         return s;
+    }
+
+
+    //购物车
+    @RequestMapping("/cartSelectAll")
+    public List<SysRoute> cartSelectAll(HttpSession session){
+        Integer userId = (Integer)session.getAttribute("userId");
+
+        //System.out.println(userId+"+++++++++++");
+
+       // System.out.println(sysRoute+"-----------");
+        List<SysRoute> sysRoute = sysOrderService.cartSelectAll(userId);
+        return sysRoute;
     }
 }

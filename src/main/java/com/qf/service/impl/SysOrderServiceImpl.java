@@ -1,5 +1,6 @@
 package com.qf.service.impl;
 
+import com.qf.dao.SysOrderMapper;
 import com.qf.dao.SysOrderRepository;
 import com.qf.dao.SysRouteRepository;
 import com.qf.dao.TbUserRepository;
@@ -28,10 +29,19 @@ public class SysOrderServiceImpl implements SysOrderService {
     @Autowired
     private SysOrderRepository sysOrderRepository;
 
+    @Autowired
+    private SysOrderMapper sysOrderMapper;
     @Override
     public String orderDelete(Integer orderId) {
         sysOrderRepository.deleteById(orderId);
         return "删除成功";
+    }
+
+    @Override
+    public List<SysRoute> cartSelectAll(Integer userId) {
+        List<SysRoute> sysRoutes = sysOrderMapper.cartSelectAll(userId);
+        return sysRoutes;
+
     }
 
     @Override

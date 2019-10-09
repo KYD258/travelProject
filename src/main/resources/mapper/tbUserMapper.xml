@@ -35,4 +35,9 @@
         insert into tb_user (login_name, real_name, sex, age, address, password, phone, email, create_time, pic)
         value (#{loginName},#{realName},#{sex},#{age},#{address},#{password},#{phone},#{email},#{createTime},#{pic})
     </insert>
+
+<!--TbUser selectByUserId(String loginName);-->
+<select id="selectByUserId" resultMap="baseResultMap">
+    select * from tb_user where login_name=#{loginName}
+</select>
 </mapper>    

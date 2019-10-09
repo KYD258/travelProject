@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 @RestController
 public class TbUserController {
@@ -25,12 +26,18 @@ public class TbUserController {
 
     //用户登录
     @RequestMapping("/userLogin")
-    public R userLogin(@RequestBody TbUser tbUser){
+    public R userLogin(@RequestBody TbUser tbUser, HttpSession session){
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(tbUser.getLoginName(), tbUser.getPassword());
         try {
             subject.login(token);
             if(subject.isAuthenticated()){
+
+                TbUser tbUser1 = tbUserService.selectByUserId(tbUser.getLoginName());
+                System.out.println(tbUser1+"++++++++++++++++++++++");
+                Integer userId = tbUser1.getUserId();
+                session.setAttribute("userId",userId);
+                System.out.println(userId+"-+-+-+-+-+");
                 return R.ok();
             }
         }catch (Exception e){

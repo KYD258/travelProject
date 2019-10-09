@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.dao.SysOrderMapper">
+
+    <resultMap id="baseResultMap1" type="com.qf.domain.SysRoute">
+        <id property="routeId" column="route_id"></id>
+        <result property="routeName" column="route_name"></result>
+        <result property="routeArea" column="route_area"></result>
+        <result property="info1" column="route_info1"></result>
+        <result property="info2" column="route_info2"></result>
+        <result property="routeTime" column="route_time"></result>
+        <result property="routePrice" column="route_price"></result>
+        <result property="routeNum" column="route_num"></result>
+        <result property="routeDay" column="route_day"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="routePic" column="route_pic"></result>
+    </resultMap>
+    <select id="cartSelectAll"  resultMap="baseResultMap1">
+        SELECT sr.* FROM sys_order so , sys_route sr,tb_user tu
+       WHERE so.user_id=tu.user_id AND so.route_id=sr.route_id AND tu.user_id=#{userId}
+    </select>
+
+
+
+
+</mapper>    

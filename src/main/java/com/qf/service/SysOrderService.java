@@ -17,4 +17,6 @@ public interface SysOrderService {
    SysOrder updateOrder(SysOrder sysOrder);
 
    String orderDelete(Integer orderId);
+
+    List<SysRoute> cartSelectAll(Integer userId);
 }
