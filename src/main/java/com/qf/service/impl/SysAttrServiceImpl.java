@@ -4,11 +4,13 @@ import com.qf.dao.SysAttrRepository;
 import com.qf.domain.SysAttr;
 import com.qf.responses.SysAttrResponse;
 import com.qf.service.SysAttrService;
+import com.qf.utils.UploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
@@ -16,6 +18,8 @@ import java.util.Optional;
 public class SysAttrServiceImpl implements SysAttrService {
     @Autowired
     private SysAttrRepository sysAttrRepository;
+
+
 
     @Override
     public String save(SysAttr sysAttr) {
@@ -54,4 +58,5 @@ public class SysAttrServiceImpl implements SysAttrService {
         }
         return null;
     }
+
 }
