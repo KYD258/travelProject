@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class TbUserController {
@@ -62,4 +64,17 @@ public class TbUserController {
         }
         return R.error();
     }
+    @RequestMapping("/getMsg")
+    public String getMsg(HttpSession httpSession){
+        Integer userId =(Integer) httpSession.getAttribute("userId");
+        TbUser one = tbUserService.findOne(userId);
+
+        if (one!=null){
+            return "欢迎欢迎，热烈欢迎！"+one.getLoginName()+""+one.getSex()+"士";
+        }else{
+            return "兄嘚，请登录！";
+        }
+
+    }
+
 }

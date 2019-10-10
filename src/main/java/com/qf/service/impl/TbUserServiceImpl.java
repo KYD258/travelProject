@@ -37,4 +37,10 @@ public class TbUserServiceImpl implements TbUserService {
     public TbUser selectByUserId(String loginName) {
         return tbUserMapper.selectByUserId(loginName);
     }
+
+    @Override
+    public TbUser findOne(Integer userId) {
+        TbUser one = tbUserMapper.findOne(userId);
+        return one;
+    }
 }

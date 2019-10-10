@@ -19,6 +19,21 @@
         SELECT sr.* FROM cart so , sys_route sr,tb_user tu
        WHERE so.user_id=tu.user_id AND so.route_id=sr.route_id AND tu.user_id=#{userId}
     </select>
+    <select id="countPrice" resultType="java.lang.Float">
+          SELECT sum(sr.route_price) FROM cart so , sys_route sr,tb_user tu
+       WHERE so.user_id=tu.user_id AND so.route_id=sr.route_id AND tu.user_id=#{userId}
+    </select>
+    <select id="findByUserIdAndRouteId" parameterType="com.qf.domain.Cart" resultMap="baseResultMap2">
+        select * from cart where user_id=#{userId} and route_id=#{routeId}
+    </select>
+    <delete id="deleteAll" parameterType="java.lang.Integer">
+        delete from cart where user_id=#{userId}
+    </delete>
+    <resultMap id="baseResultMap2" type="com.qf.domain.Cart">
+        <id property="cartId" column="cart_id"></id>
+        <result property="routeId" column="route_id"></result>
+        <result property="userId" column="user_id"></result>
+    </resultMap>
 
 
 

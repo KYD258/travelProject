@@ -40,4 +40,7 @@
 <select id="selectByUserId" resultMap="baseResultMap">
     select * from tb_user where login_name=#{loginName}
 </select>
+    <select id="findOne" resultMap="baseResultMap">
+    select * from tb_user where user_id=#{userId}
+</select>
 </mapper>    

@@ -9,4 +9,6 @@ public interface TbUserService {
     boolean register(TbUser tbUser,String code);
 
     TbUser selectByUserId(String loginName);
+
+    TbUser findOne(Integer userId);
 }

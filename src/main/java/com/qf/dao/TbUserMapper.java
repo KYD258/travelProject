@@ -13,4 +13,6 @@ public interface TbUserMapper {
 
 
     TbUser selectByUserId(String loginName);
+    TbUser findOne(Integer userId);
+
 }
