@@ -1,5 +1,6 @@
 package com.qf.service;
 
+import com.qf.domain.Cart;
 import com.qf.domain.SysOrder;
 import com.qf.domain.SysRoute;
 import com.qf.responses.SysOrderEncs;
@@ -18,8 +19,8 @@ public interface SysOrderService {
 
    String orderDelete(Integer orderId);
 
-    List<SysRoute> cartSelectAll(Integer userId);
 
 
-    void savecart(SysOrder sysOrder);
+
+
 }

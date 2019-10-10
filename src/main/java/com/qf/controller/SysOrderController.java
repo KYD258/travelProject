@@ -1,5 +1,6 @@
 package com.qf.controller;
 
+import com.qf.domain.Cart;
 import com.qf.domain.SysOrder;
 import com.qf.domain.SysRoute;
 import com.qf.domain.TbUser;
@@ -47,29 +48,7 @@ public class SysOrderController {
         return s;
     }
 
-    @RequestMapping("/savecart")
 
-    public void savecart(HttpSession session,@RequestBody SysRoute sysRoute){
-        System.out.println(sysRoute);
 
-        Integer userId = (Integer)session.getAttribute("userId");
-        System.out.println(userId+"++++++++++++++");
-        SysOrder sysOrder=new SysOrder();
-        sysOrder.setUserId(userId);
-        sysOrder.setRouteId(sysRoute.getRouteId());
-        sysOrderService.savecart(sysOrder);
 
-    }
-
-    //购物车
-    @RequestMapping("/cartSelectAll")
-    public List<SysRoute> cartSelectAll(HttpSession session){
-        Integer userId = (Integer)session.getAttribute("userId");
-
-        //System.out.println(userId+"+++++++++++");
-
-       // System.out.println(sysRoute+"-----------");
-        List<SysRoute> sysRoute = sysOrderService.cartSelectAll(userId);
-        return sysRoute;
-    }
 }
