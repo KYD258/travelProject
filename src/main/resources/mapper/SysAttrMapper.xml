@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qf.dao.SysAttrMapper">
+    <resultMap id="baseResultMap3" type="com.qf.domain.SysAttr">
+        <id property="attrId" column="attr_id"></id>
+        <result property="attrName" column="attr_name"></result>
+        <result property="attrPic" column="attr_pic"></result>
+        <result property="attrAddress" column="attr_address"></result>
+        <result property="attrInfo" column="attr_info"></result>
+        <result property="attrPrice" column="attr_price"></result>
+    </resultMap>
+    <!--SysAttr findByrouteId(Integer routeId);-->
+    <select id="findByrouteId" resultMap="baseResultMap3">
+         SELECT sa.* from sys_route sr,sys_attr sa,sys_route_attr sra
+         where sr.route_id=sra.route_id and sa.attr_id=sra.attr_id and sr.route_id=#{routeId}
+    </select>
+
+</mapper>

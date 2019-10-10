@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -31,7 +32,10 @@ public class SysRouteController {
 
     @RequestMapping("/selectById")
     public SysRoute selectById(@RequestBody SysRoute sysRoute){
-        return sysRouteService.selectById(sysRoute.getRouteId());
+        if(sysRoute.getRouteId()!=null){
+            return sysRouteService.selectById(sysRoute.getRouteId());
+        }
+        return null;
     }
 
     @RequestMapping("/delete")
@@ -63,5 +67,10 @@ public class SysRouteController {
     @RequestMapping("/selectByattrId")
     public SysRoute selectByattrId(@RequestBody SysAttr sysAttr){
         return sysRouteService.selectByattrId(sysAttr.getAttrId());
+    }
+    @RequestMapping("/selectByrouteId")
+    public List<SysAttr> selectByrouteId(@RequestBody SysRoute sysRoute){
+        System.out.println(sysRoute);
+        return sysRouteService.selectByrouteId(sysRoute.getRouteId());
     }
 }

@@ -1,7 +1,9 @@
 package com.qf.service.impl;
 
+import com.qf.dao.SysAttrMapper;
 import com.qf.dao.SysRouteMapper;
 import com.qf.dao.SysRouteRepository;
+import com.qf.domain.SysAttr;
 import com.qf.domain.SysRoute;
 import com.qf.responses.SysRouteResponse;
 import com.qf.service.SysRouteService;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,6 +23,9 @@ public class SysRouteServiceImpl implements SysRouteService {
 
     @Autowired
     private SysRouteMapper sysRouteMapper;
+
+    @Autowired
+    private SysAttrMapper sysAttrMapper;
 
     @Override
     public String save(SysRoute sysRoute) {
@@ -64,6 +70,15 @@ public class SysRouteServiceImpl implements SysRouteService {
         SysRoute sysRoute = sysRouteMapper.findByattrId(attrId);
         if(sysRoute!=null){
             return sysRoute;
+        }
+        return null;
+    }
+
+    @Override
+    public List<SysAttr> selectByrouteId(Integer routeId) {
+        List<SysAttr> list=sysAttrMapper.findByrouteId(routeId);
+        if(list!=null){
+            return list;
         }
         return null;
     }
