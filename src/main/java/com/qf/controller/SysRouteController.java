@@ -70,7 +70,10 @@ public class SysRouteController {
     }
     @RequestMapping("/selectByrouteId")
     public List<SysAttr> selectByrouteId(@RequestBody SysRoute sysRoute){
-        System.out.println(sysRoute);
         return sysRouteService.selectByrouteId(sysRoute.getRouteId());
+    }
+    @RequestMapping(value = "/findByRouteNameLike",method = RequestMethod.POST)
+    public List<SysRoute> findByRouteNameLike(@RequestBody SysRoute sysRoute){
+        return sysRouteService.findByRouteNameLike("%"+sysRoute.getRouteName()+"%");
     }
 }

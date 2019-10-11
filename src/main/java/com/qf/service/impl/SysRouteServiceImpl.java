@@ -82,4 +82,13 @@ public class SysRouteServiceImpl implements SysRouteService {
         }
         return null;
     }
+
+    @Override
+    public List<SysRoute> findByRouteNameLike(String routeName) {
+        List<SysRoute> list = sysRouteRepository.findByRouteNameLike(routeName);
+        if(list!=null){
+            return list;
+        }
+        return null;
+    }
 }

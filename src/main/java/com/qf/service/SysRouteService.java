@@ -21,4 +21,6 @@ public interface SysRouteService {
     SysRoute selectByattrId(Integer attrId);
 
     List<SysAttr> selectByrouteId(Integer routeId);
+
+    List<SysRoute> findByRouteNameLike(String routeName);
 }
