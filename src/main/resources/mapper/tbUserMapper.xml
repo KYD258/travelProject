@@ -36,11 +36,45 @@
         value (#{loginName},#{realName},#{sex},#{age},#{address},#{password},#{phone},#{email},#{createTime},#{pic})
     </insert>
 
-<!--TbUser selectByUserId(String loginName);-->
-<select id="selectByUserId" resultMap="baseResultMap">
-    select * from tb_user where login_name=#{loginName}
-</select>
-    <select id="findOne" resultMap="baseResultMap">
-    select * from tb_user where user_id=#{userId}
-</select>
+    <!--TbUser selectByUserId(String loginName);-->
+    <select id="selectByUserId" resultMap="baseResultMap">
+        select * from tb_user where login_name=#{loginName}
+    </select>
+        <select id="findOne" resultMap="baseResultMap">
+        select * from tb_user where user_id=#{userId}
+    </select>
+    
+    <update id="updateUser" parameterType="com.qf.domain.TbUser">
+        update tb_user
+        <set>
+            <if test="loginName!=null and loginName!=''">
+                login_name=#{loginName},
+            </if>
+            <if test="realName!=null and realName!=''">
+                real_name=#{realName},
+            </if>
+            <if test="sex!=null and sex!=''">
+                sex=#{sex},
+            </if>
+            <if test="age!=null and age!=''">
+                age=#{age},
+            </if>
+            <if test="address!=null and address!=''">
+                address=#{address},
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password},
+            </if>
+            <if test="phone!=null and phone!=''">
+                phone=#{phone},
+            </if>
+            <if test="email!=null and email!=''">
+                email=#{email},
+            </if>
+            <if test="pic!=null and pic!=''">
+                pic=#{pic}
+            </if>
+            where user_id=#{userId}
+        </set>
+    </update>
 </mapper>    

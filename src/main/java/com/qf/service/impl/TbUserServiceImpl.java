@@ -43,4 +43,9 @@ public class TbUserServiceImpl implements TbUserService {
         TbUser one = tbUserMapper.findOne(userId);
         return one;
     }
+
+    @Override
+    public boolean updateUser(TbUser tbUser) {
+        return tbUserMapper.updateUser(tbUser) > 0;
+    }
 }

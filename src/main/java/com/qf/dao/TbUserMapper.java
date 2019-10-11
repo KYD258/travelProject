@@ -11,8 +11,10 @@ public interface TbUserMapper {
 
     int insertUser(TbUser tbUser);
 
-
     TbUser selectByUserId(String loginName);
+
     TbUser findOne(Integer userId);
+
+    int updateUser(TbUser tbUser);
 
 }

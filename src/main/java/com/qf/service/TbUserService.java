@@ -11,4 +11,6 @@ public interface TbUserService {
     TbUser selectByUserId(String loginName);
 
     TbUser findOne(Integer userId);
+
+    boolean updateUser(TbUser tbUser);
 }
