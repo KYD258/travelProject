@@ -35,7 +35,10 @@
         <result property="userId" column="user_id"></result>
     </resultMap>
 
-
+    <!-- Integer countcart(Integer userId);-->
+<select id="countcart" resultType="java.lang.Integer">
+    SELECT count(*) FROM `cart` WHERE user_id=#{userId}
+</select>
 
 
 </mapper>    

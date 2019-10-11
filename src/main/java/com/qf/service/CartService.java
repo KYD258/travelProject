@@ -12,4 +12,8 @@ public interface CartService {
 
 
     void savecart(Cart cart);
+
+    Integer countcart(Integer userId);
+
+
 }

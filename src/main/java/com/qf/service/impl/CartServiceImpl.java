@@ -29,4 +29,9 @@ public class CartServiceImpl implements CartService {
     public void savecart(Cart cart) {
         cartRepository.save(cart);
     }
+
+    @Override
+    public Integer countcart(Integer userId) {
+        return cartMapper.countcart(userId);
+    }
 }
