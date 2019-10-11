@@ -33,15 +33,28 @@ public class CartController {
 
     @RequestMapping("/savecart")
 
-    public void savecart(HttpSession session,@RequestBody SysRoute sysRoute){
-        System.out.println(sysRoute);
+    public Integer savecart(HttpSession session,@RequestBody SysRoute sysRoute){
+        if ((Integer)session.getAttribute("userId")!=null) {
+            Integer userId = (Integer) session.getAttribute("userId");
+            // System.out.println(userId+"++++++++++++++");
+            Cart cart = new Cart();
+            cart.setUserId(userId);
+            cart.setRouteId(sysRoute.getRouteId());
+            cartService.savecart(cart);
+            return 1;
+        }else {
+           return 0;
+        }
+    }
 
-        Integer userId = (Integer)session.getAttribute("userId");
-        System.out.println(userId+"++++++++++++++");
-        Cart cart = new Cart();
-        cart.setUserId(userId);
-        cart.setRouteId(sysRoute.getRouteId());
-        cartService.savecart(cart);
 
+    @RequestMapping("/countcart")
+    public Integer countcart(HttpSession session){
+        if ((Integer)session.getAttribute("userId")!=null) {
+            Integer userId = (Integer) session.getAttribute("userId");
+            return cartService.countcart(userId);
+        }else {
+            return 0;
+        }
     }
 }

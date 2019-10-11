@@ -19,4 +19,6 @@ public interface CartMapper {
     Cart findByUserIdAndRouteId(Cart cart);
 
     void deleteAll(Integer userId);
+
+    Integer countcart(Integer userId);
 }
