@@ -2,13 +2,16 @@ package com.qf.controller;
 
 
 import com.qf.domain.Cart;
-import com.qf.domain.SysOrder;
 import com.qf.domain.SysRoute;
 import com.qf.service.CartService;
+import org.apache.shiro.SecurityUtils;
+
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -36,7 +39,6 @@ public class CartController {
     public Integer savecart(HttpSession session,@RequestBody SysRoute sysRoute){
         if ((Integer)session.getAttribute("userId")!=null) {
             Integer userId = (Integer) session.getAttribute("userId");
-            // System.out.println(userId+"++++++++++++++");
             Cart cart = new Cart();
             cart.setUserId(userId);
             cart.setRouteId(sysRoute.getRouteId());
@@ -56,5 +58,14 @@ public class CartController {
         }else {
             return 0;
         }
+    }
+    @RequestMapping("/validation")
+    public String validation(){
+        Subject subject = SecurityUtils.getSubject();
+        if(subject.isAuthenticated()){
+            return "Yes";
+        }
+        return "none";
+
     }
 }

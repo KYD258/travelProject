@@ -9,6 +9,7 @@ import com.qf.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
@@ -16,7 +17,7 @@ public class CartServiceImpl implements CartService {
     @Autowired
     private CartRepository cartRepository;
 
-    @Autowired
+    @Resource
     private CartMapper cartMapper;
     @Override
     public List<SysRoute> cartSelectAll(Integer userId) {
@@ -27,7 +28,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void savecart(Cart cart) {
-        cartRepository.save(cart);
+        cartRepository.saveAndFlush(cart);
     }
 
     @Override
