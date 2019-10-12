@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.SysUserMapper">
+<!--
+    @Column(name = "user_id")
+    private Integer userid;
+    @Column(name = "user_name")
+    private String username;
+    private String password;
+    private String phone;
+    private String email;
+-->
+    <resultMap id="baseResultMapSysuser" type="com.qf.domain.SysUser">
+        <id property="userid" column="user_id"></id>
+        <result property="username" column="user_name"></result>
+        <result property="password" column="password"></result>
+        <result property="phone" column="phone"></result>
+        <result property="email" column="email"></result>
+    </resultMap>
+    <!--public void updateSysUser(SysUser sysUser);-->
+
+    <update id="updateSysUser" parameterType="com.qf.domain.SysUser">
+        update sys_user
+        <set>
+            <if test="username!=null and username!=''">
+                user_name=#{username},
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password},
+            </if>
+            <if test="phone!=null and phone!=''">
+                phone=#{phone},
+            </if>
+            <if test="email!=null and email!=''">
+                email=#{email},
+            </if>
+        </set>
+        where user_id=#{userid}
+    </update>
+
+</mapper>

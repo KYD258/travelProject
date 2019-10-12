@@ -1,5 +1,6 @@
 package com.qf.service.impl;
 
+import com.qf.dao.SysUserMapper;
 import com.qf.dao.SysUserRepository;
 import com.qf.domain.SysUser;
 import com.qf.service.SysUserService;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
+
+    @Autowired
+    private SysUserMapper sysUserMapper;
 
     @Autowired
     private SysUserRepository sysUserRepository;
@@ -37,5 +41,15 @@ public class SysUserServiceImpl implements SysUserService {
 
         sysUserRepository.save(sysUser);
 
+    }
+
+    @Override
+    public void updateSysUser(SysUser sysUser) {
+        sysUserMapper.updateSysUser(sysUser);
+    }
+
+    @Override
+    public SysUser findByUserId(Integer userid) {
+        return sysUserRepository.findByUserid(userid);
     }
 }

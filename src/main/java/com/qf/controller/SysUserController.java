@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 public class SysUserController {
     @Autowired
@@ -34,17 +36,48 @@ public class SysUserController {
 
 
     @RequestMapping("/sysuserlogin")
-    public Integer sysuserlogin(@RequestBody SysUser sysUser) {
+    public Integer sysuserlogin(HttpSession session, @RequestBody SysUser sysUser) {
         SysUser user = sysUserService.findByUsername(sysUser.getUsername());
         if (user != null) {
             String password = Md5Utils.getMd5Password(sysUser.getPassword());
             if (user.getPassword().equals(password)) {
+
+                SysUser sysUser1 = sysUserService.findByUsername(sysUser.getUsername());
+                session.setAttribute("sysuserId",sysUser1.getUserid());
                 return 1;
             }else {
                 return 0;
             }
         }
         return 0;
+    }
+
+
+    //管理员个人信息查询
+    @RequestMapping("/getMsgSysUser")
+    public SysUser getMsgSysUser(HttpSession session){
+        Integer userid = (Integer)session.getAttribute("sysuserId");
+        SysUser sysUser = sysUserService.findByUserId(userid);
+        System.out.println(sysUser);
+        return sysUser;
+    }
+
+    //管理员个人信息修改
+    @RequestMapping("/updateSysUser")
+
+    public Integer updateSysUser(@RequestBody SysUser sysUser){
+
+        sysUserService.updateSysUser(sysUser);
+        return 1;
+    }
+
+    //管理员登陆注销
+    @RequestMapping("/SysUserLoginOut")
+
+    public Integer SysUserLoginOut(HttpSession session){
+       session.invalidate();
+
+        return 1;
     }
 
 }

@@ -9,4 +9,7 @@ public interface SysUserService {
 
     SysUser findByUsername(String username);
 
+    SysUser findByUserId(Integer userid);
+
+    void updateSysUser(SysUser sysUser);
 }
