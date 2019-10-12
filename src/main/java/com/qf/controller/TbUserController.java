@@ -56,6 +56,12 @@ public class TbUserController {
         return R.error();
     }
 
+    @RequestMapping("outLogin")
+    public void outLogin(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+    }
+
     //获取验证码
     @RequestMapping("/getCode/{email}")
     public R getCode(@PathVariable String email){
