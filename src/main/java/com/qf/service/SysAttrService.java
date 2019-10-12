@@ -14,4 +14,6 @@ public interface SysAttrService {
     SysAttrResponse selectAll(Integer size, Integer page);
 
     SysAttr selectById(Integer attrId);
+
+    SysAttr findByName(String attrName);
 }

@@ -74,7 +74,7 @@
             <if test="pic!=null and pic!=''">
                 pic=#{pic}
             </if>
-            where user_id=#{userId}
         </set>
+        where user_id=#{userId}
     </update>
 </mapper>    

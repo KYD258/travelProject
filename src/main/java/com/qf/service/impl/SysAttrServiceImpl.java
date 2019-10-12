@@ -59,4 +59,9 @@ public class SysAttrServiceImpl implements SysAttrService {
         return null;
     }
 
+    @Override
+    public SysAttr findByName(String attrName) {
+        return sysAttrRepository.findByAttrName(attrName);
+    }
+
 }

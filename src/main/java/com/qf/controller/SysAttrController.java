@@ -2,8 +2,11 @@ package com.qf.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.qf.domain.SysAttr;
+import com.qf.domain.SysRoute;
+import com.qf.domain.SysRouteAttr;
 import com.qf.responses.SysAttrResponse;
 import com.qf.service.SysAttrService;
+import com.qf.service.SysRouteAttrService;
 import com.qf.utils.UploadUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +26,9 @@ public class SysAttrController {
     private SysAttrService sysAttrService;
     @Autowired
     private UploadUtils uploadUtils;
+    @Autowired
+    private SysRouteAttrService sysRouteAttrService;
+
     private Logger logger = LoggerFactory.getLogger(SysAttrController.class);
     @RequestMapping("/selectAll/{page}/{size}")
     public SysAttrResponse selectAll(@PathVariable Integer size, @PathVariable Integer page){
@@ -37,7 +43,17 @@ public class SysAttrController {
 
     @RequestMapping("/save")
     public String save(@RequestBody SysAttr sysAttr){
-        return sysAttrService.save(sysAttr);
+        System.out.println(sysAttr);
+        sysAttrService.save(sysAttr);
+        if(sysAttr!=null){
+            Integer attrId = sysAttrService.findByName(sysAttr.getAttrName()).getAttrId();
+            Integer routeId = sysAttr.getRouteId();
+            SysRouteAttr sysRouteAttr =new SysRouteAttr();
+            sysRouteAttr.setAttrId(attrId);
+            sysRouteAttr.setRouteId(routeId);
+            sysRouteAttrService.save(sysRouteAttr);
+        }
+        return "添加成功";
     }
 
     @RequestMapping("/getPath")

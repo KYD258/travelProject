@@ -22,4 +22,6 @@ public class SysAttr {
     private String attrInfo;
     @Column(name = "attr_price")
     private Float attrPrice;
+    @Column(name = "route_id")
+    private Integer routeId;
 }
