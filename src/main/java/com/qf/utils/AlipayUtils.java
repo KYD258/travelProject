@@ -12,12 +12,12 @@ import java.util.Random;
 
 @Component
 public class AlipayUtils {
-    public String pay(SysRoute sysRoute) throws AlipayApiException {
+    public String pay(SysRoute sysRoute,String orderNum) throws AlipayApiException {
         Random random=new Random();
         AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl,AlipayConfig.app_id,AlipayConfig.merchant_private_key,"json","utf-8",AlipayConfig.alipay_public_key,"RSA2");
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
         alipayRequest.setBizContent("{" +
-                "    \"out_trade_no\":\""+random.nextInt(100000)+sysRoute.getRouteId()+"\"," +
+                "    \"out_trade_no\":\""+orderNum+"\"," +
                 "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," +
                 "    \"total_amount\":"+sysRoute.getRoutePrice()+"," +
                 "    \"subject\":\""+sysRoute.getRouteName()+"\"," +

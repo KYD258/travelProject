@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.dao.SysOrderMapper">
+<update id="updateStatus" parameterType="java.lang.String">
+    update sys_order set order_status=1 where order_num=#{orderNum}
+</update>
+<select id="findAll" resultMap="baseResultMap">
+    select * from sys_order where user_id=#{userId}
+</select>
+    <resultMap id="baseResultMap" type="com.qf.domain.SysOrder">
+        <id property="orderId" column="order_id"></id>
+        <result property="routeId" column="route_id"></result>
+        <result property="userId" column="user_id"></result>
+        <result property="orderNum" column="order_num"></result>
+        <result property="orderStatus" column="order_status"></result>
+    </resultMap>
+    <select id="findByUserIdAndRouteId" resultMap="baseResultMap">
+        select * from sys_order where user_id=#{userId} and route_id=#{routeId}
+    </select>
+    <delete id="deleteByUserIdAndRouteId" parameterType="com.qf.domain.SysOrder">
+        delete from sys_order where user_id=#{userId} and route_id=#{routeId}
+    </delete>
+
+
+
+</mapper>    

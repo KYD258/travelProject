@@ -19,8 +19,5 @@ public interface SysOrderService {
 
    String orderDelete(Integer orderId);
 
-
-
-
-
+    List<SysRoute> findAll(Integer userId);
 }

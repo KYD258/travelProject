@@ -16,5 +16,9 @@ public class SysOrder {
     private Integer userId;
     @Column(name = "route_id")
     private Integer routeId;
+    @Column(name = "order_num")
+    private String orderNum;
+    @Column(name = "order_status")
+    private Integer orderStatus;
 
 }

@@ -1,9 +1,6 @@
 package com.qf.service.impl;
 
-import com.qf.dao.CartMapper;
-import com.qf.dao.SysOrderRepository;
-import com.qf.dao.SysRouteRepository;
-import com.qf.dao.TbUserRepository;
+import com.qf.dao.*;
 import com.qf.domain.*;
 import com.qf.responses.SysOrderEncs;
 import com.qf.responses.SysOrderResponse;
@@ -14,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,8 +23,10 @@ public class SysOrderServiceImpl implements SysOrderService {
     private SysRouteRepository sysRouteRepository;
     @Autowired
     private SysOrderRepository sysOrderRepository;
+    @Resource
+    private SysOrderMapper sysOrderMapper;
 
-    @Autowired
+    @Resource
     private CartMapper cartMapper;
 
 
@@ -37,6 +37,19 @@ public class SysOrderServiceImpl implements SysOrderService {
         return "删除成功";
     }
 
+    @Override
+    public List<SysRoute> findAll(Integer userId) {
+        List<SysOrder> all = sysOrderMapper.findAll(userId);
+        List<SysRoute> list=new ArrayList<>();
+        for (SysOrder sysOrder: all) {
+            Optional<SysRoute> byId = sysRouteRepository.findById(sysOrder.getRouteId());
+            if (byId!=null){
+                SysRoute sysRoute = byId.get();
+                list.add(sysRoute);
+            }
+        }
+        return list;
+    }
 
 
     @Override

@@ -1,6 +1,5 @@
 package com.qf.config;
 
-import org.springframework.data.repository.query.Param;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,7 +16,7 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjydJygLMZBOHwpLJH+VlMaNuiaYyECpJdqKr3H6U9T6b9taSdfDVqHu21ukrkUrgXhhZN/xIxK4SbLlcHcfbkfx+d/wb+Aac2YVkO1MnTgf1iWR25Ho4PoCOC78QV5TGcBzq3bIQzVL/6Gx6uSdnnAPUU3153xYxruswNNsKzmkJxv9bbxK28ibNtG9K/fTEpeoweyTFSEr1lNyo8DKDYdXwSYzeDHSoXgC6nd5Ts8vjR+F5mRTrxa7q9VJjmCuF3PHmSQaTmCXXA9Mh6H3Odh9cAxMeAXoNSflka95SVPlDfG7TLOnfXImj+uon9v+ramg23ZqUvAWSZ6Ugve1nSQIDAQAB";
 
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String notify_url = "http://localhost:8080/#/";
+    public static String notify_url = "http://2g71995y39.wicp.vip/alipay/notify";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
     public static String return_url = "http://localhost:8080/#/";
